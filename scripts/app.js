@@ -1,6 +1,6 @@
 var myHeight = 800;
 var myWidth = 800;
-var pixelCount = 200;
+var pixelCount = 100;
 var pixelBorderWidth = 0;
 
 var sketchPad = $("#container");
@@ -17,5 +17,24 @@ pixel.width(pixelWidth);
 
 for(var i = 0; i < (pixelCount * pixelCount); i++) {
 	sketchPad.append(pixel.clone());
-	console.log(i);
 }
+
+var drawColor = "black";
+function randoColor() {
+	var colString = "#";
+	for (var i = 0; i < 3; i++) {
+		var randHex = Math.floor((Math.random() * 256)).toString(16);
+		colString = colString.concat(("00" + randHex).substr(-2));
+	}
+	return colString;
+}
+
+$("div.pixel").mouseover(function() {
+	$(this).css("background-color", drawColor);
+});
+
+$("#container").mouseleave(function() {
+	drawColor = randoColor();
+	console.log(drawColor);
+})
+
