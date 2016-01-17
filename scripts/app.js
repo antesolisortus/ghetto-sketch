@@ -1,9 +1,9 @@
 var myHeight = 800;
 var myWidth = 800;
-var pixelCount = 100;
-var pixelBorderWidth = 0;
+var pixelCount = 50;
+var pixelBorderWidth = 1;
 var newColorAtBoundary = false;
-var colorGradientWhileDrawing = true;
+var colorGradientWhileDrawing = false;
 
 var sketchPad = $("#container");
 sketchPad.height(myHeight);
@@ -25,6 +25,10 @@ var drawColor = "black";
 var red = Math.floor(Math.random() * 512) - 256;
 var green = Math.floor(Math.random() * 512) - 256;
 var blue = Math.floor(Math.random() * 512) - 256;
+
+var redStep = Math.floor(Math.random() * 10) + 1;
+var blueStep = Math.floor(Math.random() * 10) + 1;
+var greenStep = Math.floor(Math.random() * 10) + 1;
 
 function decToHex(n) {
 	return ( "00" + n.toString(16) ).substr(-2);
@@ -71,17 +75,17 @@ function modifyComponent(c, step) {
 function stepColor(r, g, b) {
 	var chance = Math.random();
 	if (chance < (1/3)) {
-		var stepC = modifyComponent(r, 5);
+		var stepC = modifyComponent(r, redStep);
 		red = stepC;
 		return RGBtoHex(Math.abs(red), g, b);
 	} 
 	else if (chance < (2/3)) {
-		var stepC = modifyComponent(g, 3);
+		var stepC = modifyComponent(g, greenStep);
 		green = stepC;
 		return RGBtoHex(r, Math.abs(green), b);
 	}
 	else {
-		var stepC = modifyComponent(b, 2);
+		var stepC = modifyComponent(b, blueStep);
 		blue = stepC;
 		return RGBtoHex(r, g, Math.abs(b));
 	}

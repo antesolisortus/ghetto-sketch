@@ -1,5 +1,10 @@
 * {
 	box-sizing: border-box;
+	font-family: sans-serif;
+}
+
+h1 {
+	text-align: center;
 }
 
 #container {
@@ -10,5 +15,5 @@
 .pixel {
 	margin: 0;
 	float: left;
-	border: 0 solid black;
+	border: 0 dotted gray;
 }
